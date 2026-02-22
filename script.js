@@ -1,7 +1,9 @@
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+let chart;
 
 displayExpenses();
 calculateTotal();
+renderChart();
 
 function addExpense() {
 
@@ -25,6 +27,7 @@ function addExpense() {
     saveToLocalStorage();
     displayExpenses();
     calculateTotal();
+    renderChart();
 
     document.getElementById("category").value = "";
     document.getElementById("amount").value = "";
@@ -58,6 +61,7 @@ function deleteExpense(index) {
     saveToLocalStorage();
     displayExpenses();
     calculateTotal();
+    renderChart();
 }
 
 function clearAll() {
@@ -65,6 +69,7 @@ function clearAll() {
     saveToLocalStorage();
     displayExpenses();
     calculateTotal();
+    renderChart();
 }
 
 function calculateTotal() {
@@ -86,4 +91,36 @@ function calculateTotal() {
 
 function saveToLocalStorage() {
     localStorage.setItem("expenses", JSON.stringify(expenses));
+}
+
+function renderChart() {
+
+    let categoryTotals = {};
+
+    expenses.forEach(function(exp) {
+        if (categoryTotals[exp.category]) {
+            categoryTotals[exp.category] += exp.amount;
+        } else {
+            categoryTotals[exp.category] = exp.amount;
+        }
+    });
+
+    let labels = Object.keys(categoryTotals);
+    let data = Object.values(categoryTotals);
+
+    let ctx = document.getElementById("expenseChart").getContext("2d");
+
+    if (chart) {
+        chart.destroy();
+    }
+
+    chart = new Chart(ctx, {
+        type: "pie",
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data
+            }]
+        }
+    });
 }
