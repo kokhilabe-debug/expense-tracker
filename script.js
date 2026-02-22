@@ -121,6 +121,23 @@ function renderChart() {
             datasets: [{
                 data: data
             }]
-        }
+        },
+        options: {
+            plugins: {
+                datalabels: {
+                    color: "#fff",
+                    font: {
+                        weight: "bold"
+                    },
+                    formatter: function(value, context) {
+                        let total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        let percentage = ((value / total) * 100).toFixed(1) + "%";
+                        return percentage;
+                    }
+                }
+            }
+        },
+        plugins: [ChartDataLabels]
     });
 }
+
