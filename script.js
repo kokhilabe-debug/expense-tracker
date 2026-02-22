@@ -38,7 +38,7 @@ function displayExpenses() {
 
         li.innerHTML = `
             ${exp.category} - ₹${exp.amount}
-            <button onclick="deleteExpense(${index})">Delete</button>
+            <button class="delete-btn" onclick="deleteExpense(${index})">Delete</button>
         `;
 
         list.appendChild(li);
@@ -66,3 +66,4 @@ function calculateTotal() {
 function saveToLocalStorage() {
     localStorage.setItem("expenses", JSON.stringify(expenses));
 }
+
