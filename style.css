@@ -1,11 +1,14 @@
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(to right, #667eea, #764ba2);
+    margin: 0;
+    padding: 40px;
+}
+
+.dashboard {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    gap: 40px;
 }
 
 .container {
@@ -13,19 +16,22 @@ body {
     padding: 30px;
     border-radius: 12px;
     width: 400px;
-    text-align: center;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-h1 {
-    margin-bottom: 20px;
-    color: #333;
+.chart-container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 input {
     padding: 10px;
     margin: 8px 0;
-    width: 85%;
+    width: 95%;
     border-radius: 6px;
     border: 1px solid #ccc;
 }
@@ -35,13 +41,21 @@ button {
     border-radius: 6px;
     border: none;
     cursor: pointer;
-    margin-left: 5px;
+    margin: 5px 5px 10px 0;
     background-color: #667eea;
     color: white;
 }
 
 button:hover {
     background-color: #5a67d8;
+}
+
+.delete-btn {
+    background-color: #e53e3e;
+}
+
+.delete-btn:hover {
+    background-color: #c53030;
 }
 
 li {
@@ -53,12 +67,4 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.delete-btn {
-    background-color: #e53e3e;
-}
-
-.delete-btn:hover {
-    background-color: #c53030;
 }
