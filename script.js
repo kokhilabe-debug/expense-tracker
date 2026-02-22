@@ -97,7 +97,7 @@ function renderChart() {
 
     let categoryTotals = {};
 
-    expenses.forEach(function(exp) {
+    expenses.forEach(function (exp) {
         if (categoryTotals[exp.category]) {
             categoryTotals[exp.category] += exp.amount;
         } else {
@@ -114,6 +114,10 @@ function renderChart() {
         chart.destroy();
     }
 
+    if (labels.length === 0) {
+        return;
+    }
+
     chart = new Chart(ctx, {
         type: "pie",
         data: {
@@ -123,16 +127,22 @@ function renderChart() {
             }]
         },
         options: {
+            responsive: true,
             plugins: {
+                legend: {
+                    position: "top"
+                },
                 datalabels: {
-                    color: "#fff",
+                    color: "#ffffff",
                     font: {
-                        weight: "bold"
+                        weight: "bold",
+                        size: 16
                     },
-                    formatter: function(value, context) {
-                        let total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-                        let percentage = ((value / total) * 100).toFixed(1) + "%";
-                        return percentage;
+                    formatter: (value, context) => {
+                        let total = context.chart.data.datasets[0].data
+                            .reduce((a, b) => a + b, 0);
+                        let percentage = (value / total * 100).toFixed(1);
+                        return percentage + "%";
                     }
                 }
             }
