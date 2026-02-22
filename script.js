@@ -1,4 +1,7 @@
-let expenses = [];   // JSON array
+let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
+
+displayExpenses();
+calculateTotal();
 
 function addExpense() {
 
@@ -10,7 +13,6 @@ function addExpense() {
         return;
     }
 
-    // JSON object
     let expense = {
         category: category,
         amount: amount
@@ -18,6 +20,7 @@ function addExpense() {
 
     expenses.push(expense);
 
+    saveToLocalStorage();
     displayExpenses();
     calculateTotal();
 
@@ -43,7 +46,9 @@ function displayExpenses() {
 }
 
 function deleteExpense(index) {
-    expenses.splice(index, 1);   // Remove selected expense
+    expenses.splice(index, 1);
+
+    saveToLocalStorage();
     displayExpenses();
     calculateTotal();
 }
@@ -56,4 +61,8 @@ function calculateTotal() {
     });
 
     document.getElementById("total").textContent = total;
+}
+
+function saveToLocalStorage() {
+    localStorage.setItem("expenses", JSON.stringify(expenses));
 }
