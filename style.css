@@ -2,38 +2,42 @@ body {
     font-family: Arial, sans-serif;
     background: linear-gradient(to right, #667eea, #764ba2);
     margin: 0;
-    padding: 40px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .dashboard {
     display: flex;
-    justify-content: center;
     gap: 40px;
+    align-items: flex-start;
 }
 
-.container {
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    width: 400px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
+.container,
 .chart-container {
     background: white;
     padding: 30px;
     border-radius: 12px;
-    width: 400px;
+    width: 420px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.chart-container {
     text-align: center;
+}
+
+h1, h2 {
+    margin-top: 0;
 }
 
 input {
     padding: 10px;
     margin: 8px 0;
-    width: 95%;
+    width: 100%;
     border-radius: 6px;
     border: 1px solid #ccc;
+    box-sizing: border-box;
 }
 
 button {
@@ -61,7 +65,7 @@ button:hover {
 li {
     list-style: none;
     margin: 10px 0;
-    padding: 8px;
+    padding: 10px;
     background: #f4f4f4;
     border-radius: 6px;
     display: flex;
