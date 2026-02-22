@@ -5,7 +5,7 @@ function addExpense() {
     let category = document.getElementById("category").value;
     let amount = parseFloat(document.getElementById("amount").value);
 
-    if(category === "" || isNaN(amount)) {
+    if (category === "" || isNaN(amount)) {
         alert("Please enter valid details");
         return;
     }
@@ -29,17 +29,29 @@ function displayExpenses() {
     let list = document.getElementById("expenseList");
     list.innerHTML = "";
 
-    expenses.forEach(function(exp) {
+    expenses.forEach(function (exp, index) {
+
         let li = document.createElement("li");
-        li.textContent = exp.category + " - ₹" + exp.amount;
+
+        li.innerHTML = `
+            ${exp.category} - ₹${exp.amount}
+            <button onclick="deleteExpense(${index})">Delete</button>
+        `;
+
         list.appendChild(li);
     });
+}
+
+function deleteExpense(index) {
+    expenses.splice(index, 1);   // Remove selected expense
+    displayExpenses();
+    calculateTotal();
 }
 
 function calculateTotal() {
     let total = 0;
 
-    expenses.forEach(function(exp) {
+    expenses.forEach(function (exp) {
         total += exp.amount;
     });
 
