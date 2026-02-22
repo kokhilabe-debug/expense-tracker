@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Simple Expense Tracker</title>
+    <title>Expense Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,9 +12,13 @@
 
         <input type="text" id="category" placeholder="Expense Category">
         <input type="number" id="amount" placeholder="Amount">
+        <input type="date" id="date">
+
         <button onclick="addExpense()">Add Expense</button>
+        <button onclick="clearAll()">Clear All</button>
 
         <h3>Total Expense: ₹ <span id="total">0</span></h3>
+        <p id="summary"></p>
 
         <ul id="expenseList"></ul>
 
@@ -23,5 +27,4 @@
     <script src="script.js"></script>
 
 </body>
-
 </html>
