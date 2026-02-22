@@ -6,27 +6,35 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="dashboard">
 
-        <h1>Expense Tracker</h1>
+        <!-- LEFT SIDE -->
+        <div class="container">
 
-        <input type="text" id="category" placeholder="Expense Category">
-        <input type="number" id="amount" placeholder="Amount">
-        <input type="date" id="date">
+            <h1>Expense Tracker</h1>
 
-        <button onclick="addExpense()">Add Expense</button>
-        <button onclick="clearAll()">Clear All</button>
+            <input type="text" id="category" placeholder="Expense Category">
+            <input type="number" id="amount" placeholder="Amount">
+            <input type="date" id="date">
 
-        <h3>Total Expense: ₹ <span id="total">0</span></h3>
-        <p id="summary"></p>
+            <button onclick="addExpense()">Add Expense</button>
+            <button onclick="clearAll()">Clear All</button>
 
-        <ul id="expenseList"></ul>
+            <h3>Total Expense: ₹ <span id="total">0</span></h3>
+            <p id="summary"></p>
 
-        <canvas id="expenseChart" style="margin-top:20px;"></canvas>
+            <ul id="expenseList"></ul>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="chart-container">
+            <h2>Expense Distribution</h2>
+            <canvas id="expenseChart"></canvas>
+        </div>
 
     </div>
 
-    <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 
