@@ -7,15 +7,17 @@ function addExpense() {
 
     let category = document.getElementById("category").value;
     let amount = parseFloat(document.getElementById("amount").value);
+    let date = document.getElementById("date").value;
 
-    if (category === "" || isNaN(amount)) {
-        alert("Please enter valid details");
+    if (category === "" || isNaN(amount) || date === "") {
+        alert("Please enter all details");
         return;
     }
 
     let expense = {
         category: category,
-        amount: amount
+        amount: amount,
+        date: date
     };
 
     expenses.push(expense);
@@ -26,6 +28,7 @@ function addExpense() {
 
     document.getElementById("category").value = "";
     document.getElementById("amount").value = "";
+    document.getElementById("date").value = "";
 }
 
 function displayExpenses() {
@@ -37,7 +40,11 @@ function displayExpenses() {
         let li = document.createElement("li");
 
         li.innerHTML = `
-            ${exp.category} - ₹${exp.amount}
+            <div>
+                <strong>${exp.category}</strong> - ₹${exp.amount}
+                <br>
+                <small>${exp.date}</small>
+            </div>
             <button class="delete-btn" onclick="deleteExpense(${index})">Delete</button>
         `;
 
@@ -53,17 +60,30 @@ function deleteExpense(index) {
     calculateTotal();
 }
 
+function clearAll() {
+    expenses = [];
+    saveToLocalStorage();
+    displayExpenses();
+    calculateTotal();
+}
+
 function calculateTotal() {
     let total = 0;
+    let highest = 0;
 
     expenses.forEach(function (exp) {
         total += exp.amount;
+        if (exp.amount > highest) {
+            highest = exp.amount;
+        }
     });
 
     document.getElementById("total").textContent = total;
+
+    document.getElementById("summary").innerHTML =
+        `Transactions: ${expenses.length} | Highest Expense: ₹${highest}`;
 }
 
 function saveToLocalStorage() {
     localStorage.setItem("expenses", JSON.stringify(expenses));
 }
-
