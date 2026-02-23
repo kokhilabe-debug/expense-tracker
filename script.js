@@ -1,3 +1,8 @@
+$(document).ready(function() {
+    $("#addBtn").click(function() {
+        addExpense();
+    });
+});
 let expenses = JSON.parse(localStorage.getItem("expenses")) || [];
 let chart;
 
@@ -7,9 +12,9 @@ renderChart();
 
 function addExpense() {
 
-    let category = document.getElementById("category").value;
-    let amount = parseFloat(document.getElementById("amount").value);
-    let date = document.getElementById("date").value;
+    let category = $("#category").val();
+let amount = parseFloat($("#amount").val());
+let date = $("#date").val();
 
     if (category === "" || isNaN(amount) || date === "") {
         alert("Please enter all details");
@@ -150,4 +155,5 @@ function renderChart() {
         plugins: [ChartDataLabels]
     });
 }
+
 
